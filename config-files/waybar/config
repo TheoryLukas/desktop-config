@@ -19,25 +19,14 @@
     ],
     "modules-right": [
         "tray",
-        "custom/randwall",
         "network",
-        "pulseaudio",
         "custom/session-management",
         "clock"
     ],
 
     // Modules configuration
-    "custom/launcher": {
-        "format": "󰈸",
-        // "on-click": "bash $HOME/.config/rofi/launcher.sh",
-        "on-click": "wofi --show drun",
-        // "on-click-right": "bash $HOME/.config/rofi/run.sh"
-        "on-click-right": "wofi --show run"  
-    },
-    "custom/session-management": {
-        "format": "⏻",
-        "on-click": "wlogout"
-    },
+
+    // Hyprland Modules
     "hyprland/workspaces": {
         "active-only": false,
         "all-outputs": true,
@@ -46,17 +35,73 @@
         "on-scroll-down": "hyprctl dispatch workspace +1",
         "format": "{icon}",
         "on-click": "activate",
-        "format-icons": {
-            // "1": "一",
-            // "2": "二",
-            // "3": "三",
-            // "4": "四",
-            // "5": "五",
+        "format-icons": { 
             "urgent": "",
             "active": "",
             "default": "󰧞",
             "sort-by-number": true
         }
+    },
+
+    // Custom Modules
+    "custom/launcher": {
+        "format": "󰈸",
+        "on-click": "wofi --show drun",
+        "on-click-right": "wofi --show run"  
+    },
+
+    "custom/session-management": {
+        "format": "⏻",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    // Misc/Other Modules
+    "cpu": {
+        "format": "󰻠 {usage}%",
+        "format-alt": "󰻠 {avg_frequency} GHz",
+        "interval": 5
+    },
+    "memory": {
+        "format": "󰍛 {}%",
+        "format-alt": "󰍛 {used}/{total} GiB",
+        "interval": 5
+    },
+    "disk": {
+        "format": "󰋊 {}%",
+        "format-alt": "󰋊 {used}/{total} GiB",
+        "interval": 5,
+        "path": "/"
+    },
+    
+    "tray": {
+        "icon-size": 16,
+        "spacing": 5
+    },
+    "network": {
+        "format-wifi": "󰤨",
+        "format-ethernet": " {ifname}: Connected",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "󰤭",
+        "format-alt": " {ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{essid}",
+        "on-click-right": "nm-connection-editor"
+    },
+    "pulseaudio": { // Soon to be replaced by 
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        },
+        "on-click": "bash ~/.scripts/volume mute",
+        "on-scroll-up": "bash ~/.scripts/volume up",
+        "on-scroll-down": "bash ~/.scripts/volume down",
+        "scroll-step": 5,
+        "on-click-right": "pavucontrol"
     },
     "clock": {
         "format": "  {:%H:%M}",
@@ -64,6 +109,8 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "  {:%d/%m}"
     },
+
+    // Currently Unused
     "custom/playerctl": {
         "format": "{icon}",
         "return-type": "json",
@@ -110,35 +157,6 @@
             ""
         ]
     },
-    "memory": {
-        "format": "󰍛 {}%",
-        "format-alt": "󰍛 {used}/{total} GiB",
-        "interval": 5
-    },
-    "cpu": {
-        "format": "󰻠 {usage}%",
-        "format-alt": "󰻠 {avg_frequency} GHz",
-        "interval": 5
-    },
-    "disk": {
-        "format": "󰋊 {}%",
-        "format-alt": "󰋊 {used}/{total} GiB",
-        "interval": 5,
-        "path": "/"
-    },
-    "network": {
-        "format-wifi": "󰤨",
-        "format-ethernet": " {ifname}: Connected",
-        "format-linked": " {ifname} (No IP)",
-        "format-disconnected": "󰤭",
-        "format-alt": " {ifname}: {ipaddr}/{cidr}",
-        "tooltip-format": "{essid}",
-        "on-click-right": "nm-connection-editor"
-    },
-    "tray": {
-        "icon-size": 16,
-        "spacing": 5
-    },
     "backlight": {
         // "device": "acpi_video1",
         // "on-scroll-up":,
@@ -155,36 +173,6 @@
             "",
             ""
         ]
-    },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰝟",
-        "format-icons": {
-            "default": [
-                "󰕿",
-                "󰖀",
-                "󰕾"
-            ]
-        },
-        "on-click": "bash ~/.scripts/volume mute",
-        "on-scroll-up": "bash ~/.scripts/volume up",
-        "on-scroll-down": "bash ~/.scripts/volume down",
-        "scroll-step": 5,
-        "on-click-right": "pavucontrol"
-    },
-    "custom/randwall": {
-        "format": "󰏘",
-        "on-click": "bash $HOME/.config/hypr/randwall.sh",
-        "on-click-right": "bash $HOME/.config/hypr/wall.sh"
-    },
-    "custom/wf-recorder": {
-        "format": "{}",
-        "interval": "once",
-        "exec": "echo ''",
-        "tooltip": "false",
-        "exec-if": "pgrep 'wf-recorder'",
-        "on-click": "exec ./scripts/wlrecord.sh",
-        "signal": 8
     },
     "custom/hyprpicker": {
         "format": "󰈋",
